@@ -10,11 +10,18 @@ def home(request):
     context = {'form':search_bar}
     return render(request, 'home.html', context)
 
+
 # отображение страницы о нас
 def about(request):
     return render(request, 'about.html')
 
 
 # отображение страницы с контактами
-def about(request):
+def contact(request):
     return render(request, 'contact.html')
+
+
+# поиск продукта
+def search_product(request):
+    if request.method == 'POST':
+        pass
