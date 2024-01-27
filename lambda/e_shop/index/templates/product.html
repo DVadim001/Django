@@ -5,11 +5,14 @@
     <title>Инфо о продукте</title>
 </head>
 <body>
-Название товара: {{ product.pr_name }}
-Количество: {{ product.pr_count }}
-Описание: {{ product.pr_des }}
-Категория: {{ product.category_name }}
-Цена: {{ product.pr_price }}
-<img src="product.pr_photo" alt="Фото товара">
+<h1>{{ product.pr_name }}</h1><br>
+<hr>
+<b>Количество: </b>{{ product.pr_count }}<br>
+<b>Описание: </b>{{ product.pr_des }}<br>
+<b>Категория: </b><a href="/category/{{ product.category_name.id }}">{{ product.category_name }}</a><br>
+<b>Цена: </b>{{ product.pr_price }}<br>
+<img src="product.pr_photo" alt="Фото товара"><br>
+<hr>
+<a href="/">на главную</a>
 </body>
 </html>

@@ -6,7 +6,10 @@
 </head>
 <body>
 {% for i in products %}
+<br>
 <a href="/product/{{ i.id }}">{{ i.pr_name }}</a>
 {% endfor %}
+<hr>
+<a href="/">на главную</a>
 </body>
 </html>

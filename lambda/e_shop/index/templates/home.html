@@ -7,9 +7,15 @@
 <body>
 <h1>Главная страница</h1>
 <hr>
-{% csrf_token %}
-<input type="text" name = "search_product">
-{{ form }} <button>Поиск</button>
+<a href="/accounts/login">Войти |</a>
+<a href="/accounts/logout">Выйти</a>
+<hr>
+<form action="search" method="post">
+    {% csrf_token %}
+<input type="text" name="search_product">
+<button>Поиск</button>
+</form>
+
 <hr>
 Товары: <br>
 {% for i in product %}

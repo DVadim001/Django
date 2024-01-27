@@ -50,13 +50,42 @@ def search_product(request):
         get_product = request.POST.get('search_product')
 
         try:
-            exat_product = Product.objects.get(product_name__icontains=get_product)
+            exat_product = Product.objects.get(pr_name__icontains=get_product)
 
-            return redirect(f"pruduct/{exat_product.id}")
+            return redirect(f"product/{exat_product.id}")
         except:
-            return redirect('product-not-found')
+            return redirect('/product-not-found')
 
 
 # Если продукт не был найден
 def pr_not_found(request):
     return render(request, 'not_found.html')
+
+
+# Добавление товара в корзину
+def add_to_cart(request, pk):
+    if request.method == 'POST':
+        cheker = Product.objects.get(id=pk)
+        if cheker.pr_count >= int(request.POST.get('pr_amount')):
+            Cart.objects.create(user_id=request.user.id,
+                                user_pruduct=cheker,
+                                user_product_quantity=int(request.POST.get('pr_amount'))).save()
+            return redirect('/')
+
+
+# Отображение корзина пользователя
+def get_user_cart(request):
+    # Вся инфао корзине пользователя
+    cart = Cart.objects.filter(user_id=request.user.id)
+
+    # Отправить данные на фронт
+    context = {'cart':cart}
+    return render(request, 'cart.html', context)
+
+
+#Удаление товара из корзины
+def del_from_cart(request, pk):
+    product_to_delete = Product.objects.get(id=pk)
+    Cart.objects.filter(user_id=request.user.id,
+                        user_product=product_to_delete).delete()
+    return redirect('/cart')
