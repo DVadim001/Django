@@ -10,7 +10,7 @@ urlpatterns = [
     path('product/<int:pk>', views.get_full_product),
     path('product-not-found', views.pr_not_found),
     path('cart', views.get_user_cart),
-    path('del-item/<int:pk>',views.del_from_cart),
-    path('add-to-cart/<int:pk>',views.add_to_cart)
+    path('del-item/<int:pk>', views.del_from_cart),
+    path('add-to-cart/<int:pk>', views.add_to_cart)
 
 ]

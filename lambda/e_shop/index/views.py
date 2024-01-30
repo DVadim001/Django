@@ -13,7 +13,7 @@ def home(request):
     # Собираем все категории товаров
     category_info = Category.objects.all()
     # отправить элементы на фронт
-    context = {'form':search_bar,
+    context = {'form': search_bar,
                'product': product_info,
                'category': category_info}
     return render(request, 'home.html', context)
