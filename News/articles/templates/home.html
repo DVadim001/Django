@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+<a href="/about-us">О нас</a>
+<a href="/contact-us">Контакты</a>
+
+
+<!--{{ form }} КАК СДЕЛАТЬ ЧЕРЕЗ БЭКЕНД???-->
+<form action="search" method="POST">
+    {% csrf_token %}
+    <input type="text">
+    <button>Поиск</button>
+</form>
+
+
+</body>
+</html>
