@@ -22,6 +22,11 @@ class Comment(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     author_name = models.CharField('имя автора', max_length=50)
     comment_text = models.CharField('текст комментария', max_length=200)
+    pub_date = models.DateTimeField(default=timezone.now)
+
+
+    def was_published_recently(self):
+        return self.pub_date >= (timezone.now())
 
     def __str__(self):
         return self.author_name
