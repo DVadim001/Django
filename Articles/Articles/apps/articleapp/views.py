@@ -5,7 +5,7 @@ from .models import Article
 
 
 def index(request):
-    latest_article_list = Article.objects.order_by('pub_date')[:5]
+    latest_article_list = Article.objects.order_by('-pub_date')[:5]
     return render(request, 'articles/list.html', {'latest_article_list': latest_article_list})
 
 

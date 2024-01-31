@@ -5,9 +5,9 @@ from django.db import models
 
 # Таблица Новостей
 class News_article(models.Model):
-     news_title = models.CharField('заголовое новости',max_length=256)
+     news_title = models.CharField('заголовое новости', max_length=256)
      news_text = models.TextField('текст новости')
-     news_date = models.DateTimeField('дата добавления',auto_now_add=True)
+     news_date = models.DateTimeField('дата добавления', auto_now_add=True)
      # news_photo = models.ImageField(upload_to='news_photo')
 
      def __str__(self):

@@ -2,20 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <title>{% block title %}Новости{% endblock %}</title>
 </head>
 <body>
 <a href="/about-us">О нас</a>
 <a href="/contact-us">Контакты</a>
+<br><hr><br>
 
+{% block content %}
+<br><br>
 
-<!--{{ form }} КАК СДЕЛАТЬ ЧЕРЕЗ БЭКЕНД???-->
+    {% if articles_news %}
+
+        {% for a in articles_news %}
+            <a href="{% url 'news:article' a.id %}">{{ a.news_title }}</a><br>
+        {% endfor %}
+
+    {% else %}
+        Новости не найдены.
+    {% endif %}
+
 <form action="search" method="POST">
     {% csrf_token %}
     <input type="text">
     <button>Поиск</button>
 </form>
-
+{% endblock %}
 
 </body>
 </html>
