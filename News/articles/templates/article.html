@@ -4,6 +4,12 @@
 
 {% block content %}
 <a href="/">На главную</a>
+
+<h2>{{ news.news_title }}</h2>
+
+<p>{{ news.news_text }}</p>
+<em>{{ news.news_date }}</em>
+
 {% if comments %}
     {% for c in comments %}
         <p>
@@ -16,10 +22,7 @@
 Комментариев пока нет.
 {% endif %}
 
-<h2>{{ news.news_title }}</h2>
 
-<p>{{ news.news_text }}</p>
-<em>{{ news.news_date }}</em>
 
 <hr>
 
