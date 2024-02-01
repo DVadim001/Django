@@ -24,6 +24,7 @@ def about(request):
 def contacts(request):
     return render(request, 'contacts.html')
 
+
 # Страница одной новости
 def article(request, pk):
     try:
@@ -31,10 +32,10 @@ def article(request, pk):
     except:
         raise Http404('Новость не найдена.')
     comments = a.news_comment_set.order_by('-id')[:10]
-    return render(request, 'article.html', {'news': a, 'comments':comments})
+    return render(request, 'article.html', {'news': a, 'comments': comments})
 
 
-# Поиск новости
+# Поиск новости по одной новости
 # def search_article(request):
 #     if request.method == 'POST':
 #         get_article = request.POST.get('search_article')
@@ -45,7 +46,7 @@ def article(request, pk):
 #             return redirect('/not_found')
 
 
-
+# Поиск новостей по фильтру
 def search_article(request):
     if request.method == 'POST':
         get_article = request.POST.get('search_article')
@@ -56,7 +57,6 @@ def search_article(request):
         else:
             # Если статьи не найдены, перенаправляем на страницу 'not found'
             return redirect('/not_found')
-
 
 
 # Новость не найдена
