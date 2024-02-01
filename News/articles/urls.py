@@ -9,7 +9,7 @@ urlpatterns = [
     path('search', views.search_article),
     path('article/<int:pk>', views.article, name='article'),
     path('comment/<int:pk>', views.comment, name='comment'),
-    path('article-not-found', views.article_not_found),
+    path('not_found', views.article_not_found),
 
 
 ]

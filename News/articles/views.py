@@ -1,13 +1,18 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import News_article
+from . import forms
 
 
 # Отображение главной страницы (все новости)
 def home(request):
+    # Выполнение поиска
+    search = forms.SearchForm()
     articles_news = News_article.objects.order_by('-news_date')[:5]
-    return render(request, 'home.html', {'articles_news': articles_news})
+    # Передаём на фронт
+    context = {'search': search, 'articles_news': articles_news}
+    return render(request, 'home.html', context)
 
 
 # Страница О нас
@@ -31,7 +36,13 @@ def article(request, pk):
 
 # Поиск новости
 def search_article(request):
-    return render(request, '')
+    if request.method == 'POST':
+        get_article = request.POST.get('search_article')
+        try:
+            exact_article = News_article.objects.get(news_title__icontains=get_article)
+            return redirect(f'article/{exact_article.id}')
+        except:
+            return redirect('/not_found')
 
 
 # Новость не найдена
