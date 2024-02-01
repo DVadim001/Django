@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-# Таблица Новостей
+# Таблица Новостей.
 class News_article(models.Model):
      news_title = models.CharField('заголовое новости', max_length=256)
      news_text = models.TextField('текст новости')
