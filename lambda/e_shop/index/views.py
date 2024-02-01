@@ -39,6 +39,7 @@ def get_full_product(request, pk):
     context = {'product': product}
     return render(request, 'product.html', context)
 
+
 # отображение страницы о нас
 def about(request):
     return render(request, 'about.html')
