@@ -35,14 +35,28 @@ def article(request, pk):
 
 
 # Поиск новости
+# def search_article(request):
+#     if request.method == 'POST':
+#         get_article = request.POST.get('search_article')
+#         try:
+#             exact_article = News_article.objects.get(news_title__icontains=get_article)
+#             return redirect(f'article/{exact_article.id}')
+#         except:
+#             return redirect('/not_found')
+
+
+
 def search_article(request):
     if request.method == 'POST':
         get_article = request.POST.get('search_article')
-        try:
-            exact_article = News_article.objects.get(news_title__icontains=get_article)
-            return redirect(f'article/{exact_article.id}')
-        except:
+        articles = News_article.objects.filter(news_title__icontains=get_article)
+        if articles:  # Это проверит, содержит ли QuerySet объекты
+            # Если статей найдено, рендерим страницу с результатами поиска
+            return render(request, 'search_result.html', {'articles': articles})
+        else:
+            # Если статьи не найдены, перенаправляем на страницу 'not found'
             return redirect('/not_found')
+
 
 
 # Новость не найдена
