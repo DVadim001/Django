@@ -2,6 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/lambda/.venv" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -10,5 +11,8 @@
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="22bbab02-7690-4733-af6e-8e9123581a89" />
   </component>
 </module>
