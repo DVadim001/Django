@@ -4,6 +4,7 @@ from .models import Product, Category, Cart
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
+from .handlers import bot
 
 
 # Create your views here.
@@ -21,7 +22,7 @@ def home(request):
     context = {'form': search_bar,
                'product': product_info,
                'category': category_info}
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 
 # Вывод товаров по определённой категории
@@ -30,14 +31,14 @@ def get_full_category(request, pk):
     products = Product.objects.filter(category_name=category)
     # Отправляем данные на фронт
     context = {'products': products}
-    return render(request, 'category.html', context)
+    return render(request, 'exact_category.html', context)
 
 
 # Вывод информации о конкретном продукте
 def get_full_product(request, pk):
     product = Product.objects.get(id=pk)
     context = {'product': product}
-    return render(request, 'product.html', context)
+    return render(request, 'exact_product.html', context)
 
 
 # отображение страницы о нас
@@ -54,7 +55,6 @@ def contact(request):
 def search_product(request):
     if request.method == 'POST':
         get_product = request.POST.get('search_product')
-
         try:
             exat_product = Product.objects.get(pr_name__icontains=get_product)
 
@@ -76,20 +76,32 @@ def add_to_cart(request, pk):
             Cart.objects.create(user_id=request.user.id,
                                 user_product=cheker,
                                 user_product_quantity=int(request.POST.get('pr_amount'))).save()
+            # Сделать, чтобы удалялось количество товара из базы при оформлении заказа
+
             return redirect('/')
 
 
 # Отображение корзина пользователя
 def get_user_cart(request):
-    # Вся инфао корзине пользователя
+    # Вся информация о корзине пользователя
     cart = Cart.objects.filter(user_id=request.user.id)
 
+    if request.method == 'POST':
+        text = 'Новый заказ!\n\n'
+
+        for i in cart:
+            text += f'Название товара: {i.user_product}\n' \
+                    f'Количество: {i.user_product_quantity}\n\n'
+            bot.send_message(82836904, text)
+            cart.delete()
+            return redirect('/')
+
     # Отправить данные на фронт
-    context = {'cart':cart}
-    return render(request, 'cart.html', context)
+    context = {'cart': cart}
+    return render(request, 'user_cart.html', context)
 
 
-#Удаление товара из корзины
+# Удаление товара из корзины
 def del_from_cart(request, pk):
     product_to_delete = Product.objects.get(id=pk)
     Cart.objects.filter(user_id=request.user.id,

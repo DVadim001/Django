@@ -11,13 +11,13 @@
 <em>{{ news.news_date }}</em>
 
 {% if comments %}
-    {% for c in comments %}
-        <p>
-            <strong>{{ c.comment_author }}</strong>
-            <p>{{ c.comment_text }}</p>
-            <em>{{ c.comment_date }}</em>
-        </p>
-    {% endfor %}
+{% for c in comments %}
+<p>
+    <strong>{{ c.comment_author }}</strong>
+    {{ c.comment_text }}<br>
+    <em>{{ c.comment_date }}</em>
+</p>
+{% endfor %}
 {% else %}
 Комментариев пока нет.
 {% endif %}

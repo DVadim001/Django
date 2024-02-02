@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+
 # Create your models here.
 class Article(models.Model):
     article_title = models.CharField('название статьи', max_length=200)
@@ -18,12 +19,12 @@ class Article(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
 
+
 class Comment(models.Model):
-    article = models.ForeignKey(Article,on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     author_name = models.CharField('имя автора', max_length=50)
     comment_text = models.CharField('текст комментария', max_length=200)
     pub_date = models.DateTimeField(default=timezone.now)
-
 
     def was_published_recently(self):
         return self.pub_date >= (timezone.now())

@@ -11,7 +11,7 @@ def index(request):
 
 def detail(request, article_id):
     try:
-        a = Article.objects.get(id = article_id)
+        a = Article.objects.get(id=article_id)
     except:
         raise Http404('Статья не найдена!')
 
@@ -21,7 +21,7 @@ def detail(request, article_id):
 
 def leave_comment(request, article_id):
     try:
-        a = Article.objects.get(id = article_id)
+        a = Article.objects.get(id=article_id)
     except:
         raise Http404('Статья не найдена!')
     a.comment_set.create(author_name=request.POST['name'], comment_text=request.POST['text'])

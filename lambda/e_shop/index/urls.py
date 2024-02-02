@@ -13,5 +13,4 @@ urlpatterns = [
     path('del-item/<int:pk>', views.del_from_cart),
     path('add-to-cart/<int:pk>', views.add_to_cart),
     path('register', views.Register.as_view())
-
-]
+  ]

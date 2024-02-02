@@ -5,17 +5,17 @@ from django.db import models
 
 # Таблица Новостей.
 class News_article(models.Model):
-     news_title = models.CharField('заголовое новости', max_length=256)
-     news_text = models.TextField('текст новости')
-     news_date = models.DateTimeField('дата добавления', auto_now_add=True)
-     # news_photo = models.ImageField(upload_to='news_photo')
+    news_title = models.CharField('заголовое новости', max_length=256)
+    news_text = models.TextField('текст новости')
+    news_date = models.DateTimeField('дата добавления', auto_now_add=True)
+# news_photo = models.ImageField(upload_to='news_photo')
 
-     def __str__(self):
-         return self.news_title
+    def __str__(self):
+        return self.news_title
 
-     class Meta:
-         verbose_name = 'Новость'
-         verbose_name_plural = 'Новости'
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 
 # Таблица комментариев

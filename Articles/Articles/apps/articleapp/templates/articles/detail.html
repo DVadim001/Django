@@ -17,16 +17,16 @@
 
 
 {% if latest_comments_list %}
-    {% for c in latest_comments_list %}
-        <p>
-            <strong>{{ c.author_name }}</strong>
-            <p>{{ c.comment_text }}<br><br>
-            <em>{{ c.pub_date }}</em>
-            </p>
-        </p>
-    {% endfor %}
+{% for c in latest_comments_list %}
+<p>
+    <strong>{{ c.author_name }}</strong>
+<p>{{ c.comment_text }}<br><br>
+    <em>{{ c.pub_date }}</em>
+</p>
+</p>
+{% endfor %}
 {% else %}
-    Комментариев пока нет.
+Комментариев пока нет.
 {% endif %}
 
 <hr>
