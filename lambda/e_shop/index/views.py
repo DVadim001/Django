@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import forms
 from .models import Product, Category, Cart
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
 from .handlers import bot
@@ -92,9 +92,9 @@ def get_user_cart(request):
         for i in cart:
             text += f'Название товара: {i.user_product}\n' \
                     f'Количество: {i.user_product_quantity}\n\n'
-            bot.send_message(82836904, text)
-            cart.delete()
-            return redirect('/')
+        bot.send_message(82836904, text)
+        cart.delete()
+        return redirect('/')
 
     # Отправить данные на фронт
     context = {'cart': cart}
@@ -131,3 +131,9 @@ class Register(View):
             return redirect('/')
         context = {'form': UserCreationForm}
         return render(request, self.template_name, context)
+
+
+# Функция выхода
+def logout_view(request):
+    logout(request)
+    return redirect('/')

@@ -35,9 +35,9 @@
 						<div class="btn-group pull-right">
 							<div class="col-sm-3">
 								<div class="search_box pull-right">
-									<form method="POST">
+									<form method="POST" action="search">
 										{% csrf_token %}
-										<input type="text" placeholder="Search" name="search_bar" />
+										<input type="text" placeholder="Search" name="search_product" />
 									</form>
 								</div>
 							</div>
@@ -70,11 +70,10 @@
 					<div class="left-sidebar">
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-products-->
-							{% for category in categories %}
+							{% for i in category %}
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="category/{{ category.id }}">{{
-											category.category_name }}</a></h4>
+									<h4 class="panel-title"><a href="category/{{ i.id }}">{{ i.name }}</a></h4>
 								</div>
 							</div>
 							{% endfor %}

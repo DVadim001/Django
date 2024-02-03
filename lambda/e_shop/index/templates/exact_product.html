@@ -23,7 +23,7 @@
                                 {% if user.is_authenticated %}
                                 <form action="/add-to-cart/{{ product.id }}" method="POST">
                                     {% csrf_token %}
-                                    <input type="number" name="pr_amount" />
+                                    <input type="number" name="pr_amount" min="1"/>
                                     <button type="submit" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
