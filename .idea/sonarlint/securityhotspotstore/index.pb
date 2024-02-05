@@ -135,3 +135,11 @@ A
 News/News/wsgi.py,9\1\9101716032eaf5909e4fed88b85d9ce4609d3389
 >
 News/manage.py,7\c\7c61e195a70fe77413bd5828ef84ec7c69b996f5
+`
+0lambda/e_shop/index/templates/exact_product.html,7\b\7ba267f0a76f1bcae076ba5ae469c7afed6bc311
+X
+(lambda/e_shop/index/templates/index.html,7\3\73dbf648074897e519a1f3fccaca61a764cf3074
+h
+8lambda/e_shop/index/templates/registration/register.html,2\f\2ffcefc2522a9011558fce09291466a8a97b52f6
+a
+1lambda/e_shop/index/templates/exact_category.html,7\4\7494a56c7489f60cc622e5a00c6178b516713874
